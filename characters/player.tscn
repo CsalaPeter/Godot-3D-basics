@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://chtsplbqe7em"]
+[gd_scene load_steps=4 format=3 uid="uid://chtsplbqe7em"]
+
+[ext_resource type="Script" path="res://characters/scripts/player.gd" id="1_78mkd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dv3pt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1sxhy"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
+script = ExtResource("1_78mkd")
+CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

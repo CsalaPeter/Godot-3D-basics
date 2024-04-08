@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjy3c8sxm40sy"]
+[gd_scene load_steps=14 format=3 uid="uid://bjy3c8sxm40sy"]
 
+[ext_resource type="Script" path="res://levels/scripts/world_script.gd" id="1_fgqna"]
 [ext_resource type="Shader" path="res://shaders/grid.gdshader" id="1_qdjm3"]
 [ext_resource type="Texture2D" uid="uid://h8bvi6tcdiwm" path="res://textures/grid.jpg" id="2_m42tq"]
 [ext_resource type="PackedScene" uid="uid://chtsplbqe7em" path="res://characters/player.tscn" id="3_r081o"]
@@ -74,7 +75,11 @@ shader_parameter/texture_roughness = ExtResource("2_m42tq")
 material = SubResource("ShaderMaterial_dfjsl")
 size = Vector3(2, 2, 2)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_301jh"]
+data = PackedVector3Array(-1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1)
+
 [node name="TestScene" type="Node3D"]
+script = ExtResource("1_fgqna")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
@@ -107,5 +112,10 @@ shape = SubResource("ConcavePolygonShape3D_7cu85")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 5)
 mesh = SubResource("BoxMesh_c85ja")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_301jh")
+
 [node name="Player" parent="." instance=ExtResource("3_r081o")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
