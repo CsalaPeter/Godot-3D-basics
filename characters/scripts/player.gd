@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var SPEED_DEFAULT : float = 5.0
 @export var SPEED_CROUCH : float = 2.5
+@export var SPEED_SPRINT : float = 7.5
 @export var TOGGLE_CROUCH : bool = true
 @export var JUMP_VELOCITY : float = 4.5
 @export_range(5, 10, 0.1) var CROUCH_SPEED : float = 7.0
@@ -46,6 +47,10 @@ func _input(event):
 			crouching(false)
 		elif CROUCH_SHAPECAST.is_colliding() == true:
 			uncrouch_check()
+	if event.is_action_pressed("sprint") and _is_crouching == false:
+		set_movement_speed("sprinting")
+	if event.is_action_released("sprint"):
+		set_movement_speed("default")
 
 func _update_camera(delta):
 	
@@ -85,7 +90,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor() and _is_crouching:
+	if Input.is_action_just_pressed("jump") and is_on_floor() and _is_crouching == false:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -133,3 +138,5 @@ func set_movement_speed(state : String):
 			_speed = SPEED_DEFAULT
 		"crouching":
 			_speed = SPEED_CROUCH
+		"sprinting":
+			_speed = SPEED_SPRINT

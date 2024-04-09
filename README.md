@@ -8,5 +8,5 @@ To do's
   - [x] WASD movement
   - [x] Look around with mouse
   - [x] Jump
-  - [ ] Crouch
-  - [ ] Sprint
+  - [x] Crouch
+  - [x] Sprint

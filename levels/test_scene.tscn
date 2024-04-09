@@ -146,11 +146,6 @@ shape = SubResource("ConcavePolygonShape3D_301jh")
 
 [node name="Player" parent="." instance=ExtResource("3_r081o")]
 TOGGLE_CROUCH = false
-JUMP_VELOCITY = 4.5
-CROUCH_SPEED = 7.0
-MOUSE_SENSITIVITY = 0.5
-TILT_LOWER_LIMIT = -1.5708
-TILT_UPPER_LIMIT = 1.5708
 
 [node name="HighPlatform" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8.336)
